@@ -1,0 +1,43 @@
+# Sistema de Gerenciamento de Eventos
+
+Este é um sistema básico de gerenciamento de eventos utilizando SQL. O sistema permite o gerenciamento de eventos, participantes e inscrições, incluindo operações de criação, leitura, atualização e exclusão (CRUD). 
+
+## Estrutura do Projeto
+
+O sistema consiste em três tabelas principais:
+- **Eventos**: Armazena informações sobre os eventos.
+- **Participantes**: Armazena informações sobre os participantes.
+- **Inscricoes**: Registra as inscrições dos participantes nos eventos.
+
+## Funcionalidades
+
+- **Eventos**: Criar, visualizar, atualizar e remover eventos.
+- **Participantes**: Registrar participantes e atualizar suas informações de contato.
+- **Inscrições**: Registrar, visualizar e remover inscrições de participantes em eventos.
+  
+### Exemplo de Operações
+
+1. Criar o banco de dados e tabelas.
+2. Inserir dados nas tabelas.
+3. Consultar eventos e inscrições.
+4. Atualizar dados de eventos ou participantes.
+5. Remover inscrições ou eventos passados.
+
+### Requisitos
+
+- **MySQL** ou outro banco de dados SQL compatível.
+- Conexão com um banco de dados MySQL rodando em local ou em servidor.
+
+### Executando o Script
+
+1. Copie o código SQL do arquivo principal.
+2. Execute no seu banco de dados utilizando um cliente SQL como **MySQL Workbench**, **DBeaver**, ou diretamente via terminal.
+3. Faça as adaptações necessárias para o seu ambiente, como o nome do banco de dados e permissões.
+
+### Licença
+
+Este projeto está licenciado sob os termos da licença MIT. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
+
+### Autor
+
+Desenvolvido por [Seu Nome].
