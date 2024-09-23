@@ -1,0 +1,79 @@
+CREATE DATABASE
+CREATE TABLE
+INSERT
+SELECT
+UPDATE
+DELETE
+JOIN
+-- Cria o banco de dados "sistema_eventos"
+CREATE DATABASE sistema_eventos;
+
+-- Seleciona o banco de dados "sistema_eventos" para uso
+USE sistema_eventos;
+-- Cria a tabela "Eventos" para armazenar informações sobre os eventos
+CREATE TABLE Eventos (
+    id_evento INT AUTO_INCREMENT PRIMARY KEY,
+    nome_evento VARCHAR(100) NOT NULL,
+    data_evento DATE NOT NULL,
+    local_evento VARCHAR(100),
+    descricao TEXT
+);
+-- Cria a tabela "Participantes" para armazenar informações sobre os participantes
+CREATE TABLE Participantes (
+    id_participante INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(20)
+);
+-- Cria a tabela "Inscrições" para registrar as inscrições de participantes em eventos
+CREATE TABLE Inscricoes (
+    id_inscricao INT AUTO_INCREMENT PRIMARY KEY,
+    id_evento INT,
+    id_participante INT,
+    data_inscricao DATE NOT NULL,
+    FOREIGN KEY (id_evento) REFERENCES Eventos(id_evento),
+    FOREIGN KEY (id_participante) REFERENCES Participantes(id_participante)
+);
+-- Insere dados na tabela "Eventos"
+INSERT INTO Eventos (nome_evento, data_evento, local_evento, descricao) VALUES 
+('Conferência de Tecnologia', '2024-10-15', 'Auditório Central', 'Evento focado em novas tecnologias.'),
+('Workshop de Marketing', '2024-11-05', 'Sala 101', 'Workshop sobre estratégias de marketing digital.'),
+('Seminário de Educação', '2024-12-01', 'Centro de Convenções', 'Discussões sobre tendências na educação.');
+-- Insere dados na tabela "Participantes"
+INSERT INTO Participantes (nome, email, telefone) VALUES 
+('Ana Costa', 'ana.costa@email.com', '1234-5678'),
+('Bruno Lima', 'bruno.lima@email.com', '8765-4321'),
+('Carla Souza', 'carla.souza@email.com', '2345-6789');
+-- Insere dados na tabela "Inscricoes" relacionando eventos e participantes
+INSERT INTO Inscricoes (id_evento, id_participante, data_inscricao) VALUES 
+(1, 1, '2024-09-01'),
+(1, 2, '2024-09-02'),
+(2, 1, '2024-09-03'),
+(3, 3, '2024-09-04'),
+(2, 3, '2024-09-05');
+-- Exibe todos os eventos disponíveis
+SELECT * FROM Eventos;
+-- Exibe a lista de participantes inscritos em um evento específico (exemplo: Evento com id_evento = 1)
+SELECT Participantes.nome, Participantes.email
+FROM Inscricoes
+JOIN Participantes ON Inscricoes.id_participante = Participantes.id_participante
+WHERE Inscricoes.id_evento = 1;
+-- Exibe todos os eventos em que um participante específico está inscrito (exemplo: Participante com id_participante = 1)
+SELECT Eventos.nome_evento, Eventos.data_evento
+FROM Inscricoes
+JOIN Eventos ON Inscricoes.id_evento = Eventos.id_evento
+WHERE Inscricoes.id_participante = 1;
+-- Atualiza a data ou o local de um evento específico (exemplo: Evento com id_evento = 1)
+UPDATE Eventos
+SET data_evento = '2024-11-20', local_evento = 'Auditório B'
+WHERE id_evento = 1;
+-- Atualiza as informações de contato de um participante específico (exemplo: Participante com id_participante = 1)
+UPDATE Participantes
+SET email = 'novo.email@email.com', telefone = '9999-9999'
+WHERE id_participante = 1;
+-- Remove eventos passados (antes da data atual)
+DELETE FROM Eventos
+WHERE data_evento < CURDATE();
+-- Remove a inscrição de um participante específico para um evento (exemplo: Inscrição com id_inscricao = 1)
+DELETE FROM Inscricoes
+WHERE id_inscricao = 1;
